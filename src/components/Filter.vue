@@ -28,5 +28,6 @@ export default {
   border: none;
   background-color: #fff;
   font-size: 0.9rem;
+  cursor: pointer;
 }
 </style>

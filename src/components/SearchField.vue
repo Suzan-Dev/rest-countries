@@ -10,11 +10,19 @@
 </template>
 
 <script>
+import { ref, watch } from "@vue/runtime-core";
+import { useStore } from "vuex";
+
 export default {
-  data() {
-    return {
-      searchTerm: "",
-    };
+  setup() {
+    const store = useStore();
+
+    const searchTerm = ref("");
+    watch(searchTerm, () => {
+      store.dispatch("fetchCountries", searchTerm.value);
+    });
+
+    return { searchTerm };
   },
 };
 </script>

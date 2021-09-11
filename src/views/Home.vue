@@ -15,25 +15,22 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
 import Container from "../components/Container.vue";
 import SearchField from "../components/SearchField.vue";
 import Filter from "../components/Filter.vue";
 import CountryCard from "../components/CountryCard.vue";
 
 export default {
-  data() {
-    return {
-      countries: [],
-    };
-  },
   components: { Container, SearchField, Filter, CountryCard },
-  async mounted() {
-    const res = await fetch(
-      "https://restcountries.eu/rest/v2/all?fields=flag;name;population;region;capital"
-    );
-    const data = await res.json();
-
-    this.countries = data.splice(0, 10);
+  computed: {
+    ...mapState(["countries"]),
+  },
+  methods: {
+    ...mapActions(["fetchCountries"]),
+  },
+  mounted() {
+    this.fetchCountries();
   },
 };
 </script>

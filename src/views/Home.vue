@@ -33,7 +33,7 @@ export default {
     );
     const data = await res.json();
 
-    this.countries = data;
+    this.countries = data.splice(0, 10);
   },
 };
 </script>

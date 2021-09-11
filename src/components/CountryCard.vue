@@ -1,24 +1,23 @@
 <template>
   <div class="card">
     <div class="card-img">
-      <img
-        src="https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/1200px-Flag_of_Germany.svg.png"
-        alt="country-flag"
-      />
+      <img :src="country.flag" alt="country-flag" />
     </div>
     <div class="card-details">
-      <h3>Germany</h3>
+      <h3>{{ country.name }}</h3>
       <div class="card-secondary-details">
-        <p><span>Population: </span> 12,34,123</p>
-        <p><span>Region: </span> Europe</p>
-        <p><span>Capital: </span> Berlin</p>
+        <p><span>Population: </span> {{ country.population }}</p>
+        <p><span>Region: </span> {{ country.region }}</p>
+        <p><span>Capital: </span> {{ country.capital }}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ["country"],
+};
 </script>
 
 <style scoped>
@@ -29,14 +28,11 @@ export default {};
   border-radius: 5px;
 }
 
-.card > div {
-  max-height: 300px;
-}
-
 .card-img > img {
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   width: 100%;
+  object-fit: cover;
 }
 
 .card-details {

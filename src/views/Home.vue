@@ -5,7 +5,11 @@
         <SearchField />
         <Filter />
       </div>
-      <CountryCard />
+      <div class="countryList">
+        <div v-for="country in countries" :key="country.name">
+          <CountryCard :country="country" />
+        </div>
+      </div>
     </Container>
   </div>
 </template>
@@ -17,7 +21,20 @@ import Filter from "../components/Filter.vue";
 import CountryCard from "../components/CountryCard.vue";
 
 export default {
+  data() {
+    return {
+      countries: [],
+    };
+  },
   components: { Container, SearchField, Filter, CountryCard },
+  async mounted() {
+    const res = await fetch(
+      "https://restcountries.eu/rest/v2/all?fields=flag;name;population;region;capital"
+    );
+    const data = await res.json();
+
+    this.countries = data;
+  },
 };
 </script>
 
@@ -31,5 +48,17 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.countryList {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.countryList > div {
+  margin-bottom: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
 }
 </style>

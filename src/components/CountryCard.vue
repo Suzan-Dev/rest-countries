@@ -1,10 +1,13 @@
 <template>
   <div class="card">
-    <div class="card-img">
-      <img :src="country.flag" alt="country-flag" />
-    </div>
+    <div
+      class="card-img"
+      :style="{
+        background: `url(${country.flag}) no-repeat center center/cover`,
+      }"
+    />
     <div class="card-details">
-      <h3>{{ country.name }}</h3>
+      <h2>{{ country.name }}</h2>
       <div class="card-secondary-details">
         <p><span>Population: </span> {{ country.population }}</p>
         <p><span>Region: </span> {{ country.region }}</p>
@@ -23,16 +26,14 @@ export default {
 <style scoped>
 .card {
   box-shadow: 1px 1px 2.5px rgba(0, 0, 0, 0.1);
+  min-width: 300px;
   max-width: 300px;
   background-color: #fff;
   border-radius: 5px;
 }
 
-.card-img > img {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
-  width: 100%;
-  object-fit: cover;
+.card-img {
+  height: 200px;
 }
 
 .card-details {

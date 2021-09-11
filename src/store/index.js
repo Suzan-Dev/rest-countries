@@ -12,10 +12,17 @@ export default createStore({
     },
   },
   actions: {
-    async fetchCountries(ctx, name) {
-      if (name) {
+    async fetchCountries(ctx, filterObj) {
+      if (filterObj?.name) {
         const res = await fetch(
-          `https://restcountries.eu/rest/v2/name/${name}`
+          `https://restcountries.eu/rest/v2/name/${filterObj.name}`
+        );
+        const data = await res.json();
+
+        ctx.commit('updateCountries', data.splice(0, 10));
+      } else if (filterObj?.region) {
+        const res = await fetch(
+          `https://restcountries.eu/rest/v2/region/${filterObj.region}`
         );
         const data = await res.json();
 

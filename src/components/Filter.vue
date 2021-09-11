@@ -1,8 +1,8 @@
 <template>
   <select v-model="filterBy" class="filter">
-    <option value="" selected>None</option>
+    <option value="" selected>All</option>
     <option value="Africa">Africa</option>
-    <option value="America">America</option>
+    <option value="Americas">America</option>
     <option value="Asia">Asia</option>
     <option value="Europe">Europe</option>
     <option value="Oceania">Oceania</option>
@@ -10,11 +10,21 @@
 </template>
 
 <script>
+import { ref } from "@vue/reactivity";
+import { watch } from "@vue/runtime-core";
+import { useStore } from "vuex";
+
 export default {
-  data() {
-    return {
-      filterBy: "",
-    };
+  setup() {
+    const store = useStore();
+
+    const filterBy = ref("");
+
+    watch(filterBy, () => {
+      store.dispatch("fetchCountries", { region: filterBy.value });
+    });
+
+    return { filterBy };
   },
 };
 </script>

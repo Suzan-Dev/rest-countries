@@ -18,8 +18,9 @@ export default {
     const store = useStore();
 
     const searchTerm = ref("");
+
     watch(searchTerm, () => {
-      store.dispatch("fetchCountries", searchTerm.value);
+      store.dispatch("fetchCountries", { name: searchTerm.value });
     });
 
     return { searchTerm };

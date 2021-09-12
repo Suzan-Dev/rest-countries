@@ -12,6 +12,7 @@
 <script>
 import { ref, watch } from "@vue/runtime-core";
 import { useStore } from "vuex";
+import debounce from "../utils/debounce";
 
 export default {
   setup() {
@@ -19,9 +20,11 @@ export default {
 
     const searchTerm = ref("");
 
-    watch(searchTerm, () => {
-      store.dispatch("fetchCountries", { name: searchTerm.value });
-    });
+    watch(searchTerm, () =>
+      debounce(() => {
+        store.dispatch("fetchCountries", { name: searchTerm.value });
+      })
+    );
 
     return { searchTerm };
   },

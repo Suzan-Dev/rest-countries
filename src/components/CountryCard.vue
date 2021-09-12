@@ -9,9 +9,11 @@
     <div class="card-details">
       <h2>{{ country.name }}</h2>
       <div class="card-secondary-details">
-        <p><span>Population: </span> {{ country.population }}</p>
+        <p>
+          <span>Population: </span> {{ country.population.toLocaleString() }}
+        </p>
         <p><span>Region: </span> {{ country.region }}</p>
-        <p><span>Capital: </span> {{ country.capital }}</p>
+        <p><span>Capital: </span> {{ country.capital || "N/A" }}</p>
       </div>
     </div>
   </div>

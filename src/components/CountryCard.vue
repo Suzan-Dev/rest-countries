@@ -31,11 +31,14 @@ export default {
   min-width: 300px;
   max-width: 300px;
   background-color: #fff;
-  border-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .card-img {
   height: 200px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .card-details {

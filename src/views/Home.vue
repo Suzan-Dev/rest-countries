@@ -5,11 +5,11 @@
         <SearchField />
         <Filter />
       </div>
-      <div class="countryList">
+      <transition-group name="countries" tag="div" appear class="countryList">
         <div v-for="country in countries" :key="country.name">
           <CountryCard :country="country" />
         </div>
-      </div>
+      </transition-group>
     </Container>
   </div>
 </template>
@@ -57,5 +57,14 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+}
+
+.countries-enter-from {
+  opacity: 0;
+  transform: scale(0.5);
+}
+
+.countries-enter-active {
+  transition: all 0.4s;
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card" @click="navigateToDetailsPage">
     <div
       class="card-img"
       :style="{
@@ -20,8 +20,16 @@
 </template>
 
 <script>
+import { useRouter } from "vue-router";
+
 export default {
   props: ["country"],
+  setup(props) {
+    const router = useRouter();
+    const navigateToDetailsPage = () => router.push(props.country.name);
+
+    return { navigateToDetailsPage };
+  },
 };
 </script>
 
@@ -33,6 +41,7 @@ export default {
   background-color: #fff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  cursor: pointer;
 }
 
 .card-img {
